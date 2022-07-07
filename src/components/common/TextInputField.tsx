@@ -2,6 +2,7 @@
 
 import { css } from "@emotion/react";
 import { CSSInterpolation } from "@emotion/serialize";
+import React from "react";
 import { colorAccept, colorError, colorPrimary, colorSecondary } from "../../constants";
 
 export type TextInputFieldProps = {
@@ -12,6 +13,7 @@ export type TextInputFieldProps = {
     label?: string,
     type?: "text" | "password" | "email",
     required?: boolean,
+    onEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void,
 };
 
 export const textInputStyle: CSSInterpolation = {
@@ -37,6 +39,10 @@ export const textInputStyle: CSSInterpolation = {
 export default function TextInputField(props: TextInputFieldProps) {
     return <>
         {props.label != null ? <label htmlFor={props.id}>{props.label}</label> : undefined}
-        <input css={css(textInputStyle)} type={props.type} maxLength={props.maxlength} minLength={props.minlength} placeholder={props.placeholder} id={props.id} name={props.id} required={props.required}/>
+        <input css={css(textInputStyle)} type={props.type} maxLength={props.maxlength} minLength={props.minlength} placeholder={props.placeholder} id={props.id} name={props.id} required={props.required} onKeyUp={props.onEnter ? (event) => {
+            if (event.key === "Enter") {
+                props.onEnter?.(event);
+            }
+        } : undefined} />
     </>;
 };

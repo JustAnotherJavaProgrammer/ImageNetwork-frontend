@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, keyframes } from "@emotion/react";
-import { colorAccept, colorError, colorPrimary, colorSecondary, colorWarn } from "../../constants";
+import { colorAccept, colorError, colorPrimary, colorSecondary, colorWarn } from "../../util/constants";
 
 const spinAnimation = keyframes`
     from {

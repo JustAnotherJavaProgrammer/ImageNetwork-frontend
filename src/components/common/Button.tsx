@@ -4,17 +4,18 @@ import { css } from "@emotion/react";
 import { CSSInterpolation } from "@emotion/serialize";
 import styled from "@emotion/styled";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import { colorAccept, colorAcceptDark, colorError, colorPrimary, colorSecondary, colorWarn } from "../../constants";
+import { colorAccept, colorAcceptDark, colorError, colorErrorDark, colorPrimary, colorPrimaryDark, colorSecondary, colorSecondaryDark, colorWarn, colorWarnDark } from "../../util/constants";
 
 export const buttonTheme:CSSInterpolation = {
     border: "none",
-    borderRadius: "10%",
+    borderRadius: "0.5em",
     boxShadow: "none",
     display: "inline-block",
     padding: "0.5em 1em",
     marginBlock: "0.5em", 
     fontSize: "1em",
     fontWeight: "bolder",
+    textDecoration: "none",
     "&:hover": {
         cursor: "pointer",
     }
@@ -24,10 +25,16 @@ export const colorBackgroundCombinations:{[index: string]: CSSInterpolation} = {
     primary: {
         backgroundColor: colorPrimary,
         color: "white",
+        "&:hover": {
+            backgroundColor: colorPrimaryDark,
+        }
     },
     secondary: {
         backgroundColor: colorSecondary,
         color: "black",
+        "&:hover": {
+            backgroundColor: colorSecondaryDark,
+        }
     },
     accept: {
         backgroundColor: colorAccept,
@@ -39,10 +46,16 @@ export const colorBackgroundCombinations:{[index: string]: CSSInterpolation} = {
     error: {
         backgroundColor: colorError,
         color: "white",
+        "&:hover": {
+            backgroundColor: colorErrorDark,
+        }
     },
     warn: {
         backgroundColor: colorWarn,
         color: "black",
+        "&:hover": {
+            backgroundColor: colorWarnDark,
+        }
     }
 };
 
@@ -56,8 +69,8 @@ export const ButtonSecondary = styled.button([buttonTheme, colorBackgroundCombin
 
 export const ButtonWarn = styled.button([buttonTheme, colorBackgroundCombinations.warn], "button");
 
-export default function Button(props: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {kind: "primary" | "secondary" | "accept" | "error" | "warn"}){
-    return <button css={css(buttonTheme, colorBackgroundCombinations[props.kind])} {...props}></button>
+export default function Button(props: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {kind: "primary" | "secondary" | "accept" | "error" | "warn", nomargin?: boolean}){
+    return <button css={css(buttonTheme, (props.nomargin ? {margin: 0, marginBlock: 0}:undefined), colorBackgroundCombinations[props.kind])} {...props}></button>
 }
 
 

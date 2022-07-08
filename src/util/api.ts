@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { api } from "../constants";
+import { api } from "./constants";
 import { User, UserCreate } from "../context/LoginContext";
 
 const commonRequestOptions: AxiosRequestConfig= {

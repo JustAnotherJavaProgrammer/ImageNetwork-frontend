@@ -8,4 +8,8 @@ export const colorAccept = "#5efc8d";
 export const colorError = "#ad343e";
 export const colorWarn = "#f2af29";
 
-export const colorAcceptDark = "#11fb56";
+export const colorPrimaryDark = "#312f72";
+export const colorSecondaryDark = "#007fca";
+export const colorAcceptDark = "#4bca71";
+export const colorErrorDark = "#8a2a32";
+export const colorWarnDark = "#c28c21";

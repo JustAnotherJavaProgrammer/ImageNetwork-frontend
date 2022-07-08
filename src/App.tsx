@@ -9,7 +9,9 @@ import LogonView from './components/LogonView';
 import LoginContext, { LoginData, UserCreate } from './context/LoginContext';
 import { css, Global } from '@emotion/react';
 import { createUser, getCurrentUser, logout } from './util/api';
-import { colorPrimary } from './constants';
+import { colorPrimary } from './util/constants';
+import Header from './components/Header';
+import Column from './components/common/Column';
 
 
 interface GlobalProps { };
@@ -128,11 +130,14 @@ class App extends React.Component<GlobalProps, GlobalState> {
           }
         } />
         <LoginContext.Provider value={this.state.loginData}>
+          <Column css={css({width: "100%", height: "100%", alignItems: "stretch"})}>
+          <Header />
           <Routes>
             <Route path="/" element={<MainView />} />
             <Route path="/login" element={<LoginView />} />
             <Route path="/logon" element={<LogonView />} />
           </Routes>
+          </Column>
         </LoginContext.Provider>
       </div>
     );

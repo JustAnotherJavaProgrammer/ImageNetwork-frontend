@@ -3,7 +3,7 @@
 import { css } from "@emotion/react";
 import { CSSInterpolation } from "@emotion/serialize";
 import React from "react";
-import { colorAccept, colorError, colorPrimary, colorSecondary } from "../../constants";
+import { colorAccept, colorError, colorPrimary, colorSecondary } from "../../util/constants";
 
 export type TextInputFieldProps = {
     maxlength?: number,

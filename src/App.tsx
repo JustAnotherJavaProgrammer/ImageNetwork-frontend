@@ -6,10 +6,10 @@ import { Route, Routes } from 'react-router-dom';
 import MainView from './components/MainView';
 import LoginView from './components/LoginView';
 import LogonView from './components/LogonView';
-import LoginContext, { LoginData, User, UserCreate } from './context/LoginContext';
-import axios, { AxiosResponse } from 'axios';
-import { api } from './constants';
+import LoginContext, { LoginData, UserCreate } from './context/LoginContext';
 import { css, Global } from '@emotion/react';
+import { createUser, getCurrentUser, logout } from './util/api';
+import { colorPrimary } from './constants';
 
 
 interface GlobalProps { };
@@ -23,14 +23,7 @@ class App extends React.Component<GlobalProps, GlobalState> {
     super(props);
     const loginFunc = async (email: string, password: string) => {
       try {
-        const user = await axios.get(api + "/user", {
-          responseType: "json",
-          auth: {
-            username: email,
-            password: password
-          },
-          withCredentials: true
-        }) as AxiosResponse<User, any>;
+        const user = await getCurrentUser({ username: email, password });
         this.setState(state => ({
           loginData: {
             ...state.loginData,
@@ -49,14 +42,8 @@ class App extends React.Component<GlobalProps, GlobalState> {
     };
     const logonFunc = async (userCreate: UserCreate) => {
       try {
-        const userId = await axios.post(api + "/user", userCreate, {
-          responseType: "text",
-          withCredentials: true
-        }) as AxiosResponse<User, any>;
-        const user = await axios.get(api + "/user" + userId.data, {
-          responseType: "json",
-          withCredentials: true,
-        }) as AxiosResponse<User, any>;
+        /*const userId = */await createUser(userCreate);
+        const user = await getCurrentUser({ username: userCreate.email, password: userCreate.password });
         this.setState(state => ({
           loginData: {
             ...state.loginData,
@@ -74,22 +61,24 @@ class App extends React.Component<GlobalProps, GlobalState> {
       }
     };
 
-    const logoutFunc = () => {
+    const logoutFunc = async () => {
+      try {
+        await logout();
+      } catch (err) {
+        console.error(err);
+      }
       this.setState(state => ({
         loginData: {
           ...state.loginData,
           user: null,
           loggedIn: false,
         }
-      }))
+      }));
     };
 
     const sessionDetectFunc = async () => {
       try {
-        const user = await axios.get(api + "/user", {
-          responseType: "json",
-          withCredentials: true,
-        }) as AxiosResponse<User, any>;
+        const user = await getCurrentUser();
         this.setState(state => ({
           loginData: {
             ...state.loginData,
@@ -132,6 +121,9 @@ class App extends React.Component<GlobalProps, GlobalState> {
               fontSize: "1.5em",
               marginBlock: "0.3em",
               fontWeight: "bold",
+            },
+            "a": {
+              color: colorPrimary
             }
           }
         } />

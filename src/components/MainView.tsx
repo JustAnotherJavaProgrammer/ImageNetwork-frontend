@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import LoginContext from "../context/LoginContext";
+import Button from "./common/Button";
 import Card from "./common/Card";
 import Center from "./common/Center";
 import Spinner from "./common/Spinner";
@@ -12,7 +13,8 @@ export default function MainView() {
                     Name: {loginContext.user?.name}<br />
                     E-mail: {loginContext.user?.email}<br />
                     Nickname: {loginContext.user?.nickname}<br />
-                    Role: {loginContext.user?.role}
+                    Role: {loginContext.user?.role}<br />
+                    <Button kind="error" onClick={() => { loginContext.logout(); }}>Log out</Button>
                 </Card>
             </Center> :
             (loginContext.user === undefined ?

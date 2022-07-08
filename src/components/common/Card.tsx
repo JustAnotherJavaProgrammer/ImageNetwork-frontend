@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
-import { CSSInterpolation, Interpolation } from "@emotion/serialize";
+import { CSSInterpolation } from "@emotion/serialize";
 
 export type CardProps = {
     title: string;
@@ -19,8 +19,8 @@ export const cardStyle: CSSInterpolation = {
 export default function Card(props: CardProps) {
     return <section css={css(null,cardStyle, props.css)} >
         <h2>{props.title}</h2>
-        <p>
+        <div>
             {props.children}
-        </p>
+        </div>
     </section>;
 }

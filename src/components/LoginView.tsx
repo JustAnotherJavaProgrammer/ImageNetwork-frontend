@@ -1,5 +1,6 @@
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import LoginContext, { LoginData } from "../context/LoginContext";
+import { focus } from "../util/dom";
 import Button from "./common/Button";
 import Card from "./common/Card";
 import Center from "./common/Center";
@@ -10,11 +11,10 @@ export default function LoginView() {
     return <LoginContext.Consumer>{loginContext => !loginContext.loggedIn ? <Center>
         <Card title="Log in">
             <Column>
-                <TextInputField type="email" id="username" label="E-mail address:" placeholder="test@example.com" minlength={3} required={true} onEnter={() => {
-                    document.getElementById("password")?.focus();
-                }} />
+                <TextInputField type="email" id="username" label="E-mail address:" placeholder="test@example.com" minlength={3} required={true} onEnter={focus("password")} />
                 <TextInputField type="password" id="password" label="Password:" placeholder="Your password" required={true} onEnter={() => login(loginContext)} />
                 <Button kind="accept" onClick={() => login(loginContext)}>Log in</Button>
+                <Link to="/logon">Don't already have an account? Create one!</Link>
             </Column>
         </Card>
     </Center> : <Navigate to={"/"} />}

@@ -3,7 +3,7 @@
 import { css } from "@emotion/react";
 import { CSSInterpolation } from "@emotion/serialize";
 import styled from "@emotion/styled";
-import { ButtonHTMLAttributes, DetailedHTMLProps, HTMLProps } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { colorAccept, colorAcceptDark, colorError, colorPrimary, colorSecondary, colorWarn } from "../../constants";
 
 export const buttonTheme:CSSInterpolation = {
@@ -26,7 +26,7 @@ export const colorBackgroundCombinations:{[index: string]: CSSInterpolation} = {
         color: "white",
     },
     secondary: {
-        backgroundColor: colorAccept,
+        backgroundColor: colorSecondary,
         color: "black",
     },
     accept: {

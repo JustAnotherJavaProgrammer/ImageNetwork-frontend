@@ -31,6 +31,6 @@ export type User = {
     deleted: boolean
 };
 
-export type UserCreate = Omit<User, "id" | "createdAt" | "updatedAt" | "deleted" | "role">;
+export type UserCreate = Omit<User, "id" | "createdAt" | "updatedAt" | "deleted" | "role"> & {password: string};
 
 export default LoginContext;

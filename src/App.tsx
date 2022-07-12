@@ -2,7 +2,7 @@
 
 import React from 'react';
 import './App.css';
-import { Route, Routes, useParams } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import MainView from './components/MainView';
 import LoginView from './components/LoginView';
 import LogonView from './components/LogonView';

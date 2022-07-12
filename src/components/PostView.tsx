@@ -1,5 +1,5 @@
 import Center from "./common/Center";
-import Post, { PostProps } from "./common/Post";
+import Post from "./common/Post";
 import SessionDetector from "./common/SessionDetector";
 import {useParams} from "react-router-dom";
 

@@ -1,10 +1,8 @@
-import { Navigate } from "react-router-dom";
 import LoginContext from "../context/LoginContext";
 import Button from "./common/Button";
 import Card from "./common/Card";
 import Center from "./common/Center";
 import SessionDetector from "./common/SessionDetector";
-import Spinner from "./common/Spinner";
 
 export default function MainView() {
     return <SessionDetector>

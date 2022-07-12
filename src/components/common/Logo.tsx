@@ -2,15 +2,17 @@
 
 import { css } from "@emotion/react";
 import { CSSInterpolation } from "@emotion/serialize";
+import { Link } from "react-router-dom";
 import { colorPrimary } from "../../util/constants";
 
 const logoStyle:CSSInterpolation = {
     fontWeight: "bold",
     fontSize: "1.5em",
     marginInlineEnd: "0.5em",
-    color: colorPrimary
+    color: colorPrimary,
+    textDecoration: "none",
 };
 
 export default function Logo() {
-    return <div css={css(logoStyle)}>ImageNetwork logo</div>
+    return <Link to={"/"} css={css(logoStyle)}>ImageNetwork logo</Link>
 }

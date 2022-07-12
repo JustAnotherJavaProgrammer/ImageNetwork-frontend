@@ -1,7 +1,14 @@
+/** @jsxImportSource @emotion/react */
+
 import React from "react";
 import Card from "./Card";
 import Spinner from "./Spinner";
-import {getPost, Post as ApiPost} from "../../util/api";
+import { getPost, Post as ApiPost } from "../../util/api";
+import { Image } from "./Image";
+import InfoBox from "./InfoBox";
+import Center, { centerStyles } from "./Center";
+import Column, { columnStyle } from "./Column";
+import { css } from "@emotion/react";
 
 export type PostProps = {
     id: number;
@@ -21,8 +28,22 @@ export default class Post extends React.Component<PostProps, PostState> {
     }
 
     render() {
-        return <Card title={this.state.post?.title ?? "Post"}>
-            {this.state.post === undefined ? <Spinner /> : (this.state.post === null ? <div>Post not found</div> : <div>{this.state.post.comment}</div>)}
+        return <Card title={this.state.post?.title ?? "Post"} css={{
+            minWidth: "320px",
+            width: "75vw",
+            maxWidth: "min(75vw, 769px)",
+            minHeight: "300px",
+            height: "75vh",
+            maxHeight: "769px",
+        }}>
+            {this.state.post === undefined ?
+                <Center><Spinner /></Center> :
+                (this.state.post === null ?
+                    <InfoBox color="warn">Post not found</InfoBox> :
+                    <figure>
+                            <Image src={this.state.post?.image} />
+                            <figcaption css={css({display: "block", maxWidth: "min(75vw, 769px)"})}>{this.state.post.comment}</figcaption>
+                    </figure>)}
         </Card>
     }
 }

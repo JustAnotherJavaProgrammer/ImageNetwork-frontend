@@ -3,12 +3,13 @@ import LoginContext from "../context/LoginContext";
 import Button from "./common/Button";
 import Card from "./common/Card";
 import Center from "./common/Center";
+import SessionDetector from "./common/SessionDetector";
 import Spinner from "./common/Spinner";
 
 export default function MainView() {
-    return <LoginContext.Consumer>
-        {(loginContext) => loginContext.loggedIn ?
-            <Center>
+    return <SessionDetector>
+        <LoginContext.Consumer>
+            {(loginContext) => <Center>
                 <Card title="This is you">
                     Name: {loginContext.user?.name}<br />
                     E-mail: {loginContext.user?.email}<br />
@@ -16,10 +17,7 @@ export default function MainView() {
                     Role: {loginContext.user?.role}<br />
                     <Button kind="error" onClick={() => { loginContext.logout(); }}>Log out</Button>
                 </Card>
-            </Center> :
-            (loginContext.user === undefined ?
-                (loginContext.detectSession(), <Center><Spinner /></Center>) :
-                <Navigate to={"/login"} />
-            )}
-    </LoginContext.Consumer>
+            </Center>}
+        </LoginContext.Consumer>
+    </SessionDetector>;
 }

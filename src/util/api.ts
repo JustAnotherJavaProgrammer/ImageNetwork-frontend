@@ -28,3 +28,20 @@ export function logout() {
         ...commonRequestOptions
     });
 }
+
+export type Post = {
+    id: number;
+    userId: number;
+    title: string;
+    image: string;
+    comment: string;
+    createdAt: Date;
+    updatedAt: Date;
+    deleted: boolean;
+};
+
+export async function getPost(id: number) {
+    return await axios.get(api + "/post/" + id, {
+        ...commonRequestOptions
+    }) as AxiosResponse<Post, any>;
+}

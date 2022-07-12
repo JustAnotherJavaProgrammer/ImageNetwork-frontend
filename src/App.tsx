@@ -2,7 +2,7 @@
 
 import React from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import MainView from './components/MainView';
 import LoginView from './components/LoginView';
 import LogonView from './components/LogonView';
@@ -12,6 +12,7 @@ import { createUser, getCurrentUser, logout } from './util/api';
 import { colorPrimary } from './util/constants';
 import Header from './components/Header';
 import Column from './components/common/Column';
+import PostView from './components/PostView';
 
 
 interface GlobalProps { };
@@ -130,13 +131,14 @@ class App extends React.Component<GlobalProps, GlobalState> {
           }
         } />
         <LoginContext.Provider value={this.state.loginData}>
-          <Column css={css({width: "100%", height: "100%", alignItems: "stretch"})}>
-          <Header />
-          <Routes>
-            <Route path="/" element={<MainView />} />
-            <Route path="/login" element={<LoginView />} />
-            <Route path="/logon" element={<LogonView />} />
-          </Routes>
+          <Column css={css({ width: "100%", height: "100%", alignItems: "stretch" })}>
+            <Header />
+            <Routes>
+              <Route path="/" element={<MainView />} />
+              <Route path="/login" element={<LoginView />} />
+              <Route path="/logon" element={<LogonView />} />
+              <Route path="/post/:id" element={<PostView />}></Route>
+            </Routes>
           </Column>
         </LoginContext.Provider>
       </div>

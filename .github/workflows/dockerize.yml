@@ -31,4 +31,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/JustAnotherJavaProgrammer/imagenetwork-frontend:latest
+            ghcr.io/justanotherjavaprogrammer/imagenetwork-frontend:latest

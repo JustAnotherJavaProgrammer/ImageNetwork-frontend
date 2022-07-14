@@ -23,7 +23,7 @@ export default class LogonView extends React.Component<{} | Readonly<{}>, {email
 
     async logon(loginData: LoginData) {
         if (this.state.password === this.state.passwordrepeat) {
-            await loginData.logon({ name: this.state.email, nickname: this.state.nickname, email: this.state.email, password: this.state.password });
+            await loginData.logon({ name: this.state.username, nickname: this.state.nickname, email: this.state.email, password: this.state.password });
         }
     }
 

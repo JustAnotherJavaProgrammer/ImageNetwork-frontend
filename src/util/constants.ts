@@ -1,6 +1,6 @@
 export const app_name = "ImageNetwork";
 export const tagline = "The network of images";
-export const api = "http://localhost:8080";
+export const api = "http://api.dev.local";
 
 export const colorPrimary = "#3d3b8e";
 export const colorSecondary = "#009ffd";

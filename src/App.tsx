@@ -127,6 +127,9 @@ class App extends React.Component<GlobalProps, GlobalState> {
             },
             "a": {
               color: colorPrimary
+            },
+            "figure": {
+              margin: "0",
             }
           }
         } />

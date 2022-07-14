@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { CSSInterpolation } from "@emotion/serialize";
 import { useNavigate } from "react-router-dom";
 import LoginContext from "../context/LoginContext";
+import { white } from "../util/constants";
 import Button, {  } from "./common/Button";
 import Logo from "./common/Logo";
 const headerStyles: CSSInterpolation = {
@@ -12,6 +13,9 @@ const headerStyles: CSSInterpolation = {
     alignItems: "center",
     boxShadow: "0 0.06em 0.2em 0.1em rgba(0,0,0,0.25)",
     padding: "0.5em",
+    position: "sticky",
+    top: 0,
+    backgroundColor: white
 };
 export default function Header() {
     const navigate = useNavigate();

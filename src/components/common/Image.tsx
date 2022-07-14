@@ -7,8 +7,8 @@ type ImageProps = {
     alt?: string;
 };
 
-export function Image(props: ImageProps) {
-    return <img src={props.src} alt={props.alt ?? ""} css={css({aspectRatio: "1 / 2", maxWidth: "100%"})/*css({
+export default function Image(props: ImageProps) {
+    return <img src={props.src} alt={props.alt ?? ""} css={css({objectFit: "contain", maxWidth: "75vmin"})/*css({
         display: "inline-block",
         alignSelf: "center",
         objectFit: "contain",
